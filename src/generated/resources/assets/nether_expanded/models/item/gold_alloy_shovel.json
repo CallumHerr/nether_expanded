@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "nether_expanded:item/gold_alloy_shovel"
+  }
+}
