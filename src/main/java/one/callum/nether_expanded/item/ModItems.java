@@ -8,6 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.NetherExpanded;
 import one.callum.nether_expanded.item.custom.GoldAlloyArmorItem;
+import one.callum.nether_expanded.item.custom.LavaWaxItem;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -17,6 +18,9 @@ public class ModItems {
             () -> new Item(
                     new Item.Properties()
             ));
+
+    public static final RegistryObject<Item> LAVA_WAX = ITEMS.register("lava_wax",
+            () -> new LavaWaxItem(new Item.Properties()));
 
     public static final RegistryObject<Item> GOLD_ALLOY_HELMET = ITEMS.register("gold_alloy_helmet",
             () -> new ArmorItem(

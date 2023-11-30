@@ -22,8 +22,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.NETHER_COPPER_ORE);
         blockWithItem(ModBlocks.NETHER_IRON_ORE);
-//        logBlockFromVanilla(ModBlocks.WAXED_OAK_WOOD, Blocks.OAK_WOOD);
-//        logBlockFromVanilla(ModBlocks.WAXED_SPRUCE_WOOD, Blocks.SPRUCE_WOOD);
+        axisBlockFromVanilla(ModBlocks.WAXED_OAK_WOOD, Blocks.OAK_WOOD);
     }
 
     private void blockWithItem(RegistryObject<Block> block) {
@@ -36,5 +35,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void logBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
         axisBlock((RotatedPillarBlock) block.get(), blockTexture(vanillaBlock), extend(blockTexture(vanillaBlock), "_top"));
+    }
+
+    private void axisBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        axisBlock((RotatedPillarBlock) block.get(), blockTexture(vanillaBlock), blockTexture(vanillaBlock));
     }
 }
