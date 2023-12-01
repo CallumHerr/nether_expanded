@@ -1,5 +1,6 @@
 {
   "item.nether_expanded.copper_gold_alloy": "Copper Gold Alloy",
+  "item.nether_expanded.lava_wax": "Lava Wax",
 
   "item.nether_expanded.gold_alloy_pickaxe": "Gold Alloy Pickaxe",
   "item.nether_expanded.gold_alloy_sword": "Gold Alloy Sword",
@@ -10,5 +11,57 @@
   "item.nether_expanded.gold_alloy_helmet": "Gold Alloy Helmet",
   "item.nether_expanded.gold_alloy_chestplate": "Gold Alloy Chestplate",
   "item.nether_expanded.gold_alloy_leggings": "Gold Alloy Leggings",
-  "item.nether_expanded.gold_alloy_boots": "Gold Alloy Boots"
+  "item.nether_expanded.gold_alloy_boots": "Gold Alloy Boots",
+
+  "item.nether_expanded.gold_plated_helmet": "Gold Plated Netherite Helmet",
+  "item.nether_expanded.gold_plated_chestplate": "Gold Plated Netherite Chestplate",
+  "item.nether_expanded.gold_plated_leggings": "Gold Plated Netherite Leggings",
+  "item.nether_expanded.gold_plated_boots": "Gold Plated Netherite Boots",
+
+  "block.nether_expanded.waxed_oak_log": "Waxed Oak Log",
+  "block.nether_expanded.waxed_spruce_log": "Waxed Spruce Log",
+  "block.nether_expanded.waxed_birch_log": "Waxed Birch Log",
+  "block.nether_expanded.waxed_jungle_log": "Waxed Jungle Log",
+  "block.nether_expanded.waxed_acacia_log": "Waxed Acacia Log",
+  "block.nether_expanded.waxed_cherry_log": "Waxed Cherry Log",
+  "block.nether_expanded.waxed_dark_oak_log": "Waxed Dark Oak Log",
+  "block.nether_expanded.waxed_mangrove_log": "Waxed Mangrove Log",
+
+  "block.nether_expanded.waxed_stripped_oak_log": "Waxed Stripped Oak Log",
+  "block.nether_expanded.waxed_stripped_spruce_log": "Waxed Stripped Spruce Log",
+  "block.nether_expanded.waxed_stripped_birch_log": "Waxed Stripped Birch Log",
+  "block.nether_expanded.waxed_stripped_jungle_log": "Waxed Stripped Jungle Log",
+  "block.nether_expanded.waxed_stripped_acacia_log": "Waxed Stripped Acacia Log",
+  "block.nether_expanded.waxed_stripped_cherry_log": "Waxed Stripped Cherry Log",
+  "block.nether_expanded.waxed_stripped_dark_oak_log": "Waxed Stripped Dark Oak Log",
+  "block.nether_expanded.waxed_stripped_mangrove_log": "Waxed Stripped Mangrove Log",
+
+  "block.nether_expanded.waxed_stripped_oak_wood": "Waxed Stripped Oak Wood",
+  "block.nether_expanded.waxed_stripped_spruce_wood": "Waxed Stripped Spruce Wood",
+  "block.nether_expanded.waxed_stripped_birch_wood": "Waxed Stripped Birch Wood",
+  "block.nether_expanded.waxed_stripped_jungle_wood": "Waxed Stripped Jungle Wood",
+  "block.nether_expanded.waxed_stripped_acacia_wood": "Waxed Stripped Acacia Wood",
+  "block.nether_expanded.waxed_stripped_cherry_wood": "Waxed Stripped Cherry Wood",
+  "block.nether_expanded.waxed_stripped_dark_oak_wood": "Waxed Stripped Dark Oak Wood",
+  "block.nether_expanded.waxed_stripped_mangrove_wood": "Waxed Stripped Mangrove Wood",
+
+  "block.nether_expanded.waxed_oak_wood": "Waxed Oak Wood",
+  "block.nether_expanded.waxed_spruce_wood": "Waxed Spruce Wood",
+  "block.nether_expanded.waxed_birch_wood": "Waxed Birch Wood",
+  "block.nether_expanded.waxed_jungle_wood": "Waxed Jungle Wood",
+  "block.nether_expanded.waxed_acacia_wood": "Waxed Acacia Wood",
+  "block.nether_expanded.waxed_cherry_wood": "Waxed Cherry Wood",
+  "block.nether_expanded.waxed_dark_oak_wood": "Waxed Dark Oak Wood",
+  "block.nether_expanded.waxed_mangrove_wood": "Waxed Mangrove Wood",
+
+  "block.nether_expanded.waxed_oak_planks": "Waxed Oak Planks",
+  "block.nether_expanded.waxed_spruce_planks": "Waxed Spruce Planks",
+  "block.nether_expanded.waxed_birch_planks": "Waxed Birch Planks",
+  "block.nether_expanded.waxed_jungle_planks": "Waxed Jungle Planks",
+  "block.nether_expanded.waxed_acacia_planks": "Waxed Acacia Planks",
+  "block.nether_expanded.waxed_cherry_planks": "Waxed Cherry Planks",
+  "block.nether_expanded.waxed_dark_oak_planks": "Waxed Dark Oak Planks",
+  "block.nether_expanded.waxed_mangrove_planks": "Waxed Mangrove Planks"
+
+
 }

@@ -23,25 +23,28 @@ public class ModItems {
             () -> new LavaWaxItem(new Item.Properties()));
 
     public static final RegistryObject<Item> GOLD_ALLOY_HELMET = ITEMS.register("gold_alloy_helmet",
-            () -> new ArmorItem(
-                    ArmorMaterials.IRON, ArmorItem.Type.HELMET, new Item.Properties()
-            ));
+            () -> new GoldAlloyArmorItem(ArmorMaterials.IRON, ArmorItem.Type.HELMET));
 
     public static final RegistryObject<Item> GOLD_ALLOY_CHESTPLATE = ITEMS.register("gold_alloy_chestplate",
-            () -> new GoldAlloyArmorItem(
-                    ArmorMaterials.IRON, ArmorItem.Type.CHESTPLATE, new Item.Properties()
-            ));
+            () -> new GoldAlloyArmorItem(ArmorMaterials.IRON, ArmorItem.Type.CHESTPLATE));
 
     public static final RegistryObject<Item> GOLD_ALLOY_LEGGINGS = ITEMS.register("gold_alloy_leggings",
-            () -> new GoldAlloyArmorItem(
-                    ArmorMaterials.IRON, ArmorItem.Type.LEGGINGS, new Item.Properties()
-            ));
+            () -> new GoldAlloyArmorItem(ArmorMaterials.IRON, ArmorItem.Type.LEGGINGS));
 
     public static final RegistryObject<Item> GOLD_ALLOY_BOOTS = ITEMS.register("gold_alloy_boots",
-            () -> new GoldAlloyArmorItem(ArmorMaterials.IRON,
-                    ArmorItem.Type.BOOTS,
-                    new Item.Properties()
-            ));
+            () -> new GoldAlloyArmorItem(ArmorMaterials.IRON, ArmorItem.Type.BOOTS));
+
+    public static final RegistryObject<Item> GOLD_PLATED_HELMET = ITEMS.register("gold_plated_helmet",
+            () -> new GoldAlloyArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.HELMET));
+
+    public static final RegistryObject<Item> GOLD_PLATED_CHESTPLATE = ITEMS.register("gold_plated_chestplate",
+            () -> new GoldAlloyArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.CHESTPLATE));
+
+    public static final RegistryObject<Item> GOLD_PLATED_LEGGINGS = ITEMS.register("gold_plated_leggings",
+            () -> new GoldAlloyArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.LEGGINGS));
+
+    public static final RegistryObject<Item> GOLD_PLATED_BOOTS = ITEMS.register("gold_plated_boots",
+            () -> new GoldAlloyArmorItem(ArmorMaterials.NETHERITE, ArmorItem.Type.BOOTS));
 
     public static final RegistryObject<Item> GOLD_ALLOY_PICKAXE = ITEMS.register("gold_alloy_pickaxe",
             () -> new PickaxeItem(ModToolTiers.GOLD_ALLOY,

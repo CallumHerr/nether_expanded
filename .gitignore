@@ -29,3 +29,5 @@ src/generated/resources/.cache/
 hs_err_pid*
 
 .idea/
+
+src/generated/

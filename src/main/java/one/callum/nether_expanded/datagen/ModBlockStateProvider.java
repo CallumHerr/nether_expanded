@@ -53,6 +53,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void logBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
         axisBlock((RotatedPillarBlock) block.get(), blockTexture(vanillaBlock), extend(blockTexture(vanillaBlock), "_top"));
+        simpleBlockItem(block.get(), new ModelFile.UncheckedModelFile(blockTexture(vanillaBlock)));
     }
 
     private void axisBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
@@ -60,5 +61,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ResourceLocation texture = new ResourceLocation(rl.getNamespace(),
                 "block/" + rl.getPath().replace("wood", "log"));
         axisBlock((RotatedPillarBlock) block.get(), texture, texture);
+        simpleBlockItem(block.get(), new ModelFile.UncheckedModelFile(texture));
     }
 }
