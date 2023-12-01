@@ -3,10 +3,7 @@ package one.callum.nether_expanded.block;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -29,120 +26,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHER_COPPER_ORE = newBlock("nether_copper_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)));
     public static final RegistryObject<Block> NETHER_IRON_ORE = newBlock("nether_iron_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE).explosionResistance(100f)));
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)
+                    .explosionResistance(50f)));
 
-//    public static final RegistryObject<Block> WAXED_OAK_LOG =
-//            waxedWood(Blocks.OAK_LOG);
-//    public static final RegistryObject<Block> WAXED_SPRUCE_LOG =
-//            waxedWood(Blocks.SPRUCE_LOG);
-//    public static final RegistryObject<Block> WAXED_BIRCH_LOG =
-//            waxedWood(Blocks.BIRCH_LOG);
-//    public static final RegistryObject<Block> WAXED_JUNGLE_LOG =
-//            waxedWood(Blocks.JUNGLE_LOG);
-//    public static final RegistryObject<Block> WAXED_ACACIA_LOG =
-//            waxedWood(Blocks.ACACIA_LOG);
-//    public static final RegistryObject<Block> WAXED_CHERRY_LOG =
-//            waxedWood(Blocks.CHERRY_LOG);
-//    public static final RegistryObject<Block> WAXED_DARK_OAK_LOG =
-//            waxedWood(Blocks.DARK_OAK_LOG);
-//    public static final RegistryObject<Block> WAXED_MANGROVE_LOG =
-//            waxedWood(Blocks.MANGROVE_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_OAK_LOG =
-//            waxedWood(Blocks.STRIPPED_OAK_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_SPRUCE_LOG =
-//            waxedWood(Blocks.STRIPPED_SPRUCE_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_BIRCH_LOG =
-//            waxedWood(Blocks.STRIPPED_BIRCH_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_JUNGLE_LOG =
-//            waxedWood(Blocks.STRIPPED_JUNGLE_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_ACACIA_LOG =
-//            waxedWood(Blocks.STRIPPED_ACACIA_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_CHERRY_LOG =
-//            waxedWood(Blocks.STRIPPED_CHERRY_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_DARK_OAK_LOG =
-//            waxedWood(Blocks.STRIPPED_DARK_OAK_LOG);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_MANGROVE_LOG =
-//            waxedWood(Blocks.STRIPPED_MANGROVE_LOG);
-//    public static final RegistryObject<Block> WAXED_OAK_WOOD =
-//            waxedWood(Blocks.OAK_WOOD);
-//    public static final RegistryObject<Block> WAXED_SPRUCE_WOOD =
-//            waxedWood(Blocks.SPRUCE_WOOD);
-//    public static final RegistryObject<Block> WAXED_BIRCH_WOOD =
-//            waxedWood(Blocks.BIRCH_WOOD);
-//    public static final RegistryObject<Block> WAXED_JUNGLE_WOOD =
-//            waxedWood(Blocks.JUNGLE_WOOD);
-//    public static final RegistryObject<Block> WAXED_ACACIA_WOOD =
-//            waxedWood(Blocks.ACACIA_WOOD);
-//    public static final RegistryObject<Block> WAXED_CHERRY_WOOD =
-//            waxedWood(Blocks.CHERRY_WOOD);
-//    public static final RegistryObject<Block> WAXED_DARK_OAK_WOOD =
-//            waxedWood(Blocks.DARK_OAK_WOOD);
-//    public static final RegistryObject<Block> WAXED_MANGROVE_WOOD =
-//            waxedWood(Blocks.MANGROVE_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_OAK_WOOD =
-//            waxedWood(Blocks.STRIPPED_OAK_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_SPRUCE_WOOD =
-//            waxedWood(Blocks.STRIPPED_SPRUCE_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_BIRCH_WOOD =
-//            waxedWood(Blocks.STRIPPED_BIRCH_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_JUNGLE_WOOD =
-//            waxedWood(Blocks.STRIPPED_JUNGLE_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_ACACIA_WOOD =
-//            waxedWood(Blocks.STRIPPED_ACACIA_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_CHERRY_WOOD =
-//            waxedWood(Blocks.STRIPPED_CHERRY_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_DARK_OAK_WOOD =
-//            waxedWood(Blocks.STRIPPED_DARK_OAK_WOOD);
-//    public static final RegistryObject<Block> WAXED_STRIPPED_MANGROVE_WOOD =
-//            waxedWood(Blocks.STRIPPED_MANGROVE_WOOD);
-//    public static final RegistryObject<Block> WAXED_WHITE_WOOL =
-//            waxedWool(Blocks.WHITE_WOOL);
-//    public static final RegistryObject<Block> WAXED_RED_WOOL =
-//            waxedWool(Blocks.RED_WOOL);
-//    public static final RegistryObject<Block> WAXED_BLUE_WOOL =
-//            waxedWool(Blocks.BLUE_WOOL);
-//    public static final RegistryObject<Block> WAXED_LIGHT_BLUE_WOOL =
-//            waxedWool(Blocks.LIGHT_BLUE_WOOL);
-//    public static final RegistryObject<Block> WAXED_CYAN_WOOL =
-//            waxedWool(Blocks.CYAN_WOOL);
-//    public static final RegistryObject<Block> WAXED_GREEN_WOOL =
-//            waxedWool(Blocks.GREEN_WOOL);
-//    public static final RegistryObject<Block> WAXED_LIME_WOOL =
-//            waxedWool(Blocks.LIME_WOOL);
-//    public static final RegistryObject<Block> WAXED_BLACK_WOOL =
-//            waxedWool(Blocks.BLACK_WOOL);
-//    public static final RegistryObject<Block> WAXED_BROWN_WOOL =
-//            waxedWool(Blocks.BROWN_WOOL);
-//    public static final RegistryObject<Block> WAXED_GRAY_WOOL =
-//            waxedWool(Blocks.GRAY_WOOL);
-//    public static final RegistryObject<Block> WAXED_LIGHT_GRAY_WOOL =
-//            waxedWool(Blocks.LIGHT_GRAY_WOOL);
-//    public static final RegistryObject<Block> WAXED_ORANGE_WOOL =
-//            waxedWool(Blocks.ORANGE_WOOL);
-//    public static final RegistryObject<Block> WAXED_PINK_WOOL =
-//            waxedWool(Blocks.PINK_WOOL);
-//    public static final RegistryObject<Block> WAXED_MAGENTA_WOOL =
-//            waxedWool(Blocks.MAGENTA_WOOL);
-//    public static final RegistryObject<Block> WAXED_PURPLE_WOOL =
-//            waxedWool(Blocks.PURPLE_WOOL);
-//    public static final RegistryObject<Block> WAXED_YELLOW_WOOL =
-//            waxedWool(Blocks.YELLOW_WOOL);
-//    public static final RegistryObject<Block> WAXED_OAK_PLANKS =
-//        waxedPlank(Blocks.OAK_PLANKS, SoundType.WOOD);
-//    public static final RegistryObject<Block> WAXED_SPRUCE_PLANKS =
-//            waxedPlank(Blocks.SPRUCE_PLANKS, SoundType.WOOD);
-//    public static final RegistryObject<Block> WAXED_BIRCH_PLANKS =
-//            waxedPlank(Blocks.BIRCH_PLANKS, SoundType.WOOD);
-//    public static final RegistryObject<Block> WAXED_JUNGLE_PLANKS =
-//            waxedPlank(Blocks.JUNGLE_PLANKS, SoundType.WOOD);
-//    public static final RegistryObject<Block> WAXED_ACACIA_PLANKS =
-//            waxedPlank(Blocks.ACACIA_PLANKS, SoundType.WOOD);
-//    public static final RegistryObject<Block> WAXED_CHERRY_PLANKS =
-//            waxedPlank(Blocks.CHERRY_PLANKS, SoundType.CHERRY_WOOD);
-//    public static final RegistryObject<Block> WAXED_DARK_OAK_PLANKS =
-//            waxedPlank(Blocks.DARK_OAK_PLANKS, SoundType.WOOD);
-//    public static final RegistryObject<Block> WAXED_MANGROVE_PLANK =
-//            waxedPlank(Blocks.MANGROVE_PLANKS, SoundType.WOOD);
+    public static final RegistryObject<Block> NETHER_ANCIENT_CACHE = newBlock("nether_ancient_cache",
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE)
+                    .explosionResistance(100)));
+
     public static final Map<Block, RegistryObject<Block>> WAXED_BLOCKS = new HashMap<>(){{
         put(Blocks.WHITE_WOOL, waxedWool(Blocks.WHITE_WOOL));
         put(Blocks.RED_WOOL, waxedWool(Blocks.RED_WOOL));

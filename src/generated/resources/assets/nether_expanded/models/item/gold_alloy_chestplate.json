@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "nether_expanded:item/gold_alloy_chestplate"
-  }
-}

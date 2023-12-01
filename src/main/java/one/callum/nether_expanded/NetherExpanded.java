@@ -61,6 +61,7 @@ public class NetherExpanded {
             event.accept(ModItems.GOLD_ALLOY_AXE);
             event.accept(ModItems.GOLD_ALLOY_SHOVEL);
             event.accept(ModItems.GOLD_ALLOY_HOE);
+            event.accept(ModItems.LAVA_WAX);
         } else if (event.getTabKey().equals(CreativeModeTabs.COMBAT)) {
             event.accept(ModItems.GOLD_ALLOY_SWORD);
             event.accept(ModItems.GOLD_ALLOY_HELMET);

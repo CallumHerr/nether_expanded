@@ -18,8 +18,13 @@ import one.callum.nether_expanded.block.ModBlocks;
 
 public class ModConfiguredFeatures {
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_COPPER_ORE = registerKey("nether_copper_ore");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_IRON_ORE = registerKey("nether_iron_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_COPPER_ORE =
+            registerKey("nether_copper_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_IRON_ORE =
+            registerKey("nether_iron_ore");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NETHER_ANCIENT_CACHE =
+            registerKey("nether_ancient_cache");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest netherrackReplaceables = new BlockMatchTest(Blocks.NETHERRACK);
@@ -31,6 +36,9 @@ public class ModConfiguredFeatures {
         register(context, NETHER_IRON_ORE, Feature.ORE, new OreConfiguration(netherrackReplaceables,
                 ModBlocks.NETHER_IRON_ORE.get().defaultBlockState(),
                 9));
+
+        register(context, NETHER_ANCIENT_CACHE, Feature.ORE, new OreConfiguration(netherrackReplaceables,
+                ModBlocks.NETHER_ANCIENT_CACHE.get().defaultBlockState(), 1));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
