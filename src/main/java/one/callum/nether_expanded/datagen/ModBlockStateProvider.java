@@ -3,6 +3,7 @@ package one.callum.nether_expanded.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -31,6 +32,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 axisBlockFromVanilla(value, key);
             } else if (name.contains("stair")) {
                 stairBlockFromVanilla(value, key);
+            } else if (name.contains("carpet")) {
+                carpetBlockFromVanilla(value, key);
             } else {
                 blockWithItemVanilla(value, key);
             }
@@ -39,6 +42,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItem(RegistryObject<Block> block) {
         simpleBlockWithItem(block.get(), cubeAll(block.get()));
+    }
+
+    private void carpetBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        simpleBlockWithItem(block.get(), models().withExistingParent(block.getId().getPath(),
+                new ResourceLocation("block/carpet")).texture("wool",
+                new ResourceLocation(rl.getNamespace(),
+                        "block/" + rl.getPath().replace("carpet", "wool"))
+        ));
     }
 
     private void blockWithItemVanilla(RegistryObject<Block> block, Block vanillaBlock) {
