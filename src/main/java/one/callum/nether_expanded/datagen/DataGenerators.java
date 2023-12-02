@@ -25,5 +25,7 @@ public class DataGenerators {
         gen.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, helper));
 
         gen.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
+        gen.addProvider(event.includeServer(), new ModBlockTagProvider(packOutput, lookupProvider, helper));
+        gen.addProvider(event.includeServer(), new ModRecipeProvider(packOutput));
     }
 }

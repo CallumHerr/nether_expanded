@@ -3,6 +3,7 @@ package one.callum.nether_expanded.block;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -13,6 +14,8 @@ import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.NetherExpanded;
 import one.callum.nether_expanded.block.custom.WaxedBlock;
 import one.callum.nether_expanded.block.custom.WaxedRotatableBlock;
+import one.callum.nether_expanded.block.custom.WaxedStairBlock;
+import one.callum.nether_expanded.block.custom.WaxedWoolCarpetBlock;
 import one.callum.nether_expanded.item.ModItems;
 
 import java.util.HashMap;
@@ -51,6 +54,22 @@ public class ModBlocks {
         put(Blocks.MAGENTA_WOOL, waxedWool(Blocks.MAGENTA_WOOL));
         put(Blocks.PURPLE_WOOL, waxedWool(Blocks.PURPLE_WOOL));
         put(Blocks.YELLOW_WOOL, waxedWool(Blocks.YELLOW_WOOL));
+        put(Blocks.WHITE_CARPET, waxedWoolCarpet(Blocks.WHITE_CARPET, DyeColor.WHITE));
+        put(Blocks.RED_CARPET, waxedWoolCarpet(Blocks.RED_CARPET, DyeColor.RED));
+        put(Blocks.BLUE_CARPET, waxedWoolCarpet(Blocks.BLUE_CARPET, DyeColor.BLUE));
+        put(Blocks.LIGHT_BLUE_CARPET, waxedWoolCarpet(Blocks.LIGHT_BLUE_CARPET, DyeColor.LIGHT_BLUE));
+        put(Blocks.CYAN_CARPET, waxedWoolCarpet(Blocks.CYAN_CARPET, DyeColor.CYAN));
+        put(Blocks.GREEN_CARPET, waxedWoolCarpet(Blocks.GREEN_CARPET, DyeColor.GREEN));
+        put(Blocks.LIME_CARPET, waxedWoolCarpet(Blocks.LIME_CARPET, DyeColor.LIME));
+        put(Blocks.BLACK_CARPET, waxedWoolCarpet(Blocks.BLACK_CARPET, DyeColor.BLACK));
+        put(Blocks.BROWN_CARPET, waxedWoolCarpet(Blocks.BROWN_CARPET, DyeColor.BROWN));
+        put(Blocks.GRAY_CARPET, waxedWoolCarpet(Blocks.GRAY_CARPET, DyeColor.GRAY));
+        put(Blocks.LIGHT_GRAY_CARPET, waxedWoolCarpet(Blocks.LIGHT_GRAY_CARPET, DyeColor.LIGHT_GRAY));
+        put(Blocks.ORANGE_CARPET, waxedWoolCarpet(Blocks.ORANGE_CARPET, DyeColor.ORANGE));
+        put(Blocks.PINK_CARPET, waxedWoolCarpet(Blocks.PINK_CARPET, DyeColor.PINK));
+        put(Blocks.MAGENTA_CARPET, waxedWoolCarpet(Blocks.MAGENTA_CARPET, DyeColor.MAGENTA));
+        put(Blocks.PURPLE_CARPET, waxedWoolCarpet(Blocks.PURPLE_CARPET, DyeColor.PURPLE));
+        put(Blocks.YELLOW_CARPET, waxedWoolCarpet(Blocks.YELLOW_CARPET, DyeColor.YELLOW));
         put(Blocks.OAK_PLANKS, waxedPlank(Blocks.OAK_PLANKS));
         put(Blocks.SPRUCE_PLANKS, waxedPlank(Blocks.SPRUCE_PLANKS));
         put(Blocks.BIRCH_PLANKS, waxedPlank(Blocks.BIRCH_PLANKS));
@@ -91,6 +110,14 @@ public class ModBlocks {
         put(Blocks.STRIPPED_CHERRY_WOOD, waxedWood(Blocks.STRIPPED_CHERRY_WOOD));
         put(Blocks.STRIPPED_DARK_OAK_WOOD, waxedWood(Blocks.STRIPPED_DARK_OAK_WOOD));
         put(Blocks.STRIPPED_MANGROVE_WOOD, waxedWood(Blocks.STRIPPED_MANGROVE_WOOD));
+        put(Blocks.OAK_STAIRS, waxedStair(Blocks.OAK_STAIRS));
+        put(Blocks.SPRUCE_STAIRS, waxedStair(Blocks.SPRUCE_STAIRS));
+        put(Blocks.BIRCH_STAIRS, waxedStair(Blocks.BIRCH_STAIRS));
+        put(Blocks.JUNGLE_STAIRS, waxedStair(Blocks.JUNGLE_STAIRS));
+        put(Blocks.ACACIA_STAIRS, waxedStair(Blocks.ACACIA_STAIRS));
+        put(Blocks.CHERRY_STAIRS, waxedStair(Blocks.CHERRY_STAIRS));
+        put(Blocks.DARK_OAK_STAIRS, waxedStair(Blocks.DARK_OAK_STAIRS));
+        put(Blocks.MANGROVE_STAIRS, waxedStair(Blocks.MANGROVE_STAIRS));
     }};
 
     private static RegistryObject<Block> waxedWood(Block block) {
@@ -98,8 +125,18 @@ public class ModBlocks {
         return newBlock("waxed_" + key.getPath(), () -> new WaxedRotatableBlock(block));
     }
 
+    private static RegistryObject<Block> waxedStair(Block block) {
+        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
+        return newBlock("waxed_" + key.getPath(), () -> new WaxedStairBlock(block));
+    }
+
     private static RegistryObject<Block> waxedPlank(Block block) {
         return waxedBlock(block, 2.0f, 3.0f, SoundType.WOOD);
+    }
+
+    private static RegistryObject<Block> waxedWoolCarpet(Block block, DyeColor color) {
+        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
+        return newBlock("waxed_" + key.getPath(), () -> new WaxedWoolCarpetBlock(block, color));
     }
 
     private static RegistryObject<Block> waxedWool(Block block) {

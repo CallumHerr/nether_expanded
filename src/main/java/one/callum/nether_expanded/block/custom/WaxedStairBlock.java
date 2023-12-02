@@ -10,24 +10,30 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ToolActions;
+import net.minecraftforge.registries.RegistryObject;
 
-public class WaxedBlock extends Block {
+import java.util.List;
+
+public class WaxedStairBlock extends StairBlock {
     private final Block regularBlock;
 
-    public WaxedBlock(Block regularBlock, float strength, float expResist, SoundType sound) {
-        super(BlockBehaviour.Properties.of()
-                .instrument(NoteBlockInstrument.BASS)
-                .strength(strength, expResist)
-                .sound(sound)
-                .mapColor(regularBlock.defaultMapColor()));
-        this.regularBlock = regularBlock;
+    public WaxedStairBlock(Block block) {
+        super(block.defaultBlockState(),
+                BlockBehaviour.Properties.of()
+                        .instrument(NoteBlockInstrument.BASS)
+                        .strength(2.0F)
+                        .sound(block == Blocks.CHERRY_STAIRS
+                                ? SoundType.CHERRY_WOOD : SoundType.WOOD)
+                        .mapColor(block.defaultMapColor()));
+        this.regularBlock = block;
     }
 
     @Override
@@ -35,10 +41,10 @@ public class WaxedBlock extends Block {
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
         if (itemStack.canPerformAction(ToolActions.AXE_WAX_OFF)) {
             if (!pLevel.isClientSide()) {
-                pLevel.setBlock(pPos, this.regularBlock.defaultBlockState(), 7);
+                pLevel.setBlock(pPos, this.regularBlock.withPropertiesOf(pState), 7);
                 itemStack.hurtAndBreak(1, pPlayer, (e) -> e.broadcastBreakEvent(pHand));
 
-                pLevel.gameEvent(pPlayer, GameEvent.BLOCK_CHANGE, pPos);
+                pLevel.levelEvent(pPlayer, 3004, pPos, 0);
                 pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
             }
 
