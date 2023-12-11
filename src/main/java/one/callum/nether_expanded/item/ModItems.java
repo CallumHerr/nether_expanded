@@ -1,30 +1,60 @@
 package one.callum.nether_expanded.item;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.NetherExpanded;
+import one.callum.nether_expanded.block.ModBlocks;
 import one.callum.nether_expanded.item.custom.GoldAlloyArmorItem;
 import one.callum.nether_expanded.item.custom.LavaWaxItem;
-import one.callum.nether_expanded.item.custom.TestItem;
+
+import java.util.List;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, NetherExpanded.MODID);
 
     public static final RegistryObject<Item> COPPER_GOLD_ALLOY_ITEM = ITEMS.register("copper_gold_alloy",
-            () -> new Item(
-                    new Item.Properties()
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> LAVA_CANE = ITEMS.register("lava_cane",
+            () -> new ItemNameBlockItem(ModBlocks.LAVA_CANE.get(), new Item.Properties().fireResistant()));
+
+    public static final RegistryObject<Item> GOLD_PLATING_SMITHING_TEMPLATE = ITEMS.register("gold_plating_smithing_template",
+            () -> new SmithingTemplateItem(
+                    Component.translatable(Util.makeDescriptionId("item",
+                            new ResourceLocation(NetherExpanded.MODID,"smithing_template.gold_plated_upgrade.applies_to")))
+                            .withStyle(ChatFormatting.BLUE),
+                    Component.translatable(Util.makeDescriptionId("item",
+                            new ResourceLocation(NetherExpanded.MODID,"smithing_template.gold_plated_upgrade.ingrediants")))
+                            .withStyle(ChatFormatting.BLUE),
+                    Component.translatable(Util.makeDescriptionId("upgrade",
+                            new ResourceLocation(NetherExpanded.MODID,"gold_plated_upgrade")))
+                            .withStyle(ChatFormatting.GRAY),
+                    Component.translatable(Util.makeDescriptionId("item",
+                            new ResourceLocation("smithing_template_netherite_upgrade.base_slot_description"))),
+                    Component.translatable(Util.makeDescriptionId("item",
+                            new ResourceLocation("smithing_template_netherite_upgrade.additions_slot_description"))),
+                    List.of(new ResourceLocation("item/empty_armor_slot_helmet"),
+                            new ResourceLocation("item/empty_armor_slot_chestplate"),
+                            new ResourceLocation("item/empty_armor_slot_leggings"),
+                            new ResourceLocation("item/empty_armor_slot_boots")),
+                    List.of(new ResourceLocation("item/empty_slot_ingot"))
             ));
 
     public static final RegistryObject<Item> LAVA_WAX = ITEMS.register("lava_wax",
             () -> new LavaWaxItem(new Item.Properties()));
 
-    public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item",
-            () -> new TestItem(new Item.Properties()));
+    public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget",
+            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> GOLD_ALLOY_HELMET = ITEMS.register("gold_alloy_helmet",
             () -> new GoldAlloyArmorItem(ArmorMaterials.IRON, ArmorItem.Type.HELMET));

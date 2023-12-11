@@ -9,10 +9,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.*;
 import one.callum.nether_expanded.NetherExpanded;
 
 import java.util.List;
@@ -25,9 +22,15 @@ public class ModPlacedFeatures {
             registerKey("nether_iron_ore_placed");
     public static final ResourceKey<PlacedFeature> NETHER_ANCIENT_CACHE_PLACED =
             registerKey("nether_ancient_cache_placed");
+    public static final ResourceKey<PlacedFeature> LAVA_CANE_PLACED =
+            registerKey("lava_cane_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
+
+        register(context, LAVA_CANE_PLACED,
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.LAVA_CANE),
+                CountOnEveryLayerPlacement.of(6), BiomeFilter.biome());
 
         register(context, NETHER_COPPER_ORE_PLACED,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.NETHER_COPPER_ORE),
@@ -38,13 +41,13 @@ public class ModPlacedFeatures {
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.NETHER_IRON_ORE),
                 ModOrePlacement.commonOrePlacement(12,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(8),
-                                VerticalAnchor.absolute(50))));
+                                VerticalAnchor.absolute(60))));
 
         register(context, NETHER_ANCIENT_CACHE_PLACED,
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.NETHER_ANCIENT_CACHE),
-                ModOrePlacement.rareOrePlacement(5,
-                        HeightRangePlacement.triangle(VerticalAnchor.absolute(8),
-                                VerticalAnchor.absolute(24))));
+                InSquarePlacement.spread(), HeightRangePlacement.triangle(
+                        VerticalAnchor.absolute(8), VerticalAnchor.absolute(24)
+                ), BiomeFilter.biome());
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {
@@ -56,5 +59,9 @@ public class ModPlacedFeatures {
                                  Holder<ConfiguredFeature<?, ?>> configuration,
                                  List<PlacementModifier> modifiers) {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
+    }
+
+    private static void register(BootstapContext<PlacedFeature> pContext, ResourceKey<PlacedFeature> pKey, Holder<ConfiguredFeature<?, ?>> pConfiguredFeatures, PlacementModifier... pPlacements) {
+        register(pContext, pKey, pConfiguredFeatures, List.of(pPlacements));
     }
 }

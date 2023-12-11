@@ -2,12 +2,15 @@ package one.callum.nether_expanded;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.PhantomRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -28,7 +31,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.block.ModBlocks;
+import one.callum.nether_expanded.entity.ModEntities;
+import one.callum.nether_expanded.entity.client.renderer.NetherCowRenderer;
+import one.callum.nether_expanded.entity.custom.NetherCow;
 import one.callum.nether_expanded.item.ModItems;
+import one.callum.nether_expanded.loot.ModLootModifiers;
+import one.callum.nether_expanded.worldgen.ModFeatures;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -42,6 +50,9 @@ public class NetherExpanded {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModEntities.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
+        ModFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
@@ -68,8 +79,13 @@ public class NetherExpanded {
             event.accept(ModItems.GOLD_ALLOY_CHESTPLATE);
             event.accept(ModItems.GOLD_ALLOY_LEGGINGS);
             event.accept(ModItems.GOLD_ALLOY_BOOTS);
+            event.accept(ModItems.GOLD_PLATED_HELMET);
+            event.accept(ModItems.GOLD_PLATED_CHESTPLATE);
+            event.accept(ModItems.GOLD_PLATED_BOOTS);
+            event.accept(ModItems.GOLD_PLATED_LEGGINGS);
         } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
             event.accept(ModItems.COPPER_GOLD_ALLOY_ITEM);
+            event.accept(ModItems.COPPER_NUGGET);
         }
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -84,6 +100,7 @@ public class NetherExpanded {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            EntityRenderers.register(ModEntities.NETHER_COW.get(), NetherCowRenderer::new);
         }
     }
 }

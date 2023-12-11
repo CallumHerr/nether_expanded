@@ -1,9 +1,14 @@
 package one.callum.nether_expanded.block.custom;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ToolActions;
 
 import java.util.List;
@@ -52,11 +58,18 @@ public class WaxedRotatableBlock extends RotatedPillarBlock {
                 pLevel.levelEvent(pPlayer, 3004, pPos, 0);
                 pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
             }
+            ParticleUtils.spawnParticlesOnBlockFace(pLevel, pPos, ParticleTypes.WAX_OFF,
+                    UniformInt.of(3, 5), pHit.getDirection(),
+                    () -> getRandomSpeedRanges(pLevel.random), 0.55D);
 
             pLevel.playSound(pPlayer, pPos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         } else {
             return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
         }
+    }
+
+    private static Vec3 getRandomSpeedRanges(RandomSource pRandom) {
+        return new Vec3(Mth.nextDouble(pRandom, -0.5D, 0.5D), Mth.nextDouble(pRandom, -0.5D, 0.5D), Mth.nextDouble(pRandom, -0.5D, 0.5D));
     }
 }

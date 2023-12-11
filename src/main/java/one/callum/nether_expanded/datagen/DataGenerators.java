@@ -8,8 +8,10 @@ import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import one.callum.nether_expanded.NetherExpanded;
+import one.callum.nether_expanded.datagen.tags.ModBiomeTagProvider;
+import one.callum.nether_expanded.datagen.tags.ModBlockTagProvider;
+import one.callum.nether_expanded.datagen.tags.ModItemTagProvider;
 
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = NetherExpanded.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -24,8 +26,15 @@ public class DataGenerators {
         gen.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, helper));
         gen.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, helper));
 
+        gen.addProvider(event.includeServer(), new ModGlobalLootModifiersProvider(packOutput));
         gen.addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, lookupProvider));
-        gen.addProvider(event.includeServer(), new ModBlockTagProvider(packOutput, lookupProvider, helper));
         gen.addProvider(event.includeServer(), new ModRecipeProvider(packOutput));
+        gen.addProvider(event.includeServer(), ModLootTablesProvider.create(packOutput));
+
+        ModBlockTagProvider blockTags = gen.addProvider(event.includeServer(),
+                new ModBlockTagProvider(packOutput, lookupProvider, helper));
+        gen.addProvider(event.includeServer(),
+                new ModItemTagProvider(packOutput, lookupProvider, blockTags.contentsGetter(), helper));
+        gen.addProvider(event.includeServer(), new ModBiomeTagProvider(packOutput, lookupProvider, helper));
     }
 }

@@ -1,10 +1,16 @@
 package one.callum.nether_expanded.block;
 
+import net.minecraft.client.animation.definitions.FrogAnimation;
+import net.minecraft.client.model.PhantomModel;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -12,12 +18,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.NetherExpanded;
-import one.callum.nether_expanded.block.custom.WaxedBlock;
-import one.callum.nether_expanded.block.custom.WaxedRotatableBlock;
-import one.callum.nether_expanded.block.custom.WaxedStairBlock;
-import one.callum.nether_expanded.block.custom.WaxedWoolCarpetBlock;
+import one.callum.nether_expanded.block.custom.*;
 import one.callum.nether_expanded.item.ModItems;
 
+import java.lang.ref.PhantomReference;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -30,13 +34,18 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHER_COPPER_ORE = newBlock("nether_copper_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)));
     public static final RegistryObject<Block> NETHER_IRON_ORE = newBlock("nether_iron_ore",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)
-                    .explosionResistance(50f)));
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_GOLD_ORE)));
 
     public static final RegistryObject<Block> NETHER_ANCIENT_CACHE = newBlock("nether_ancient_cache",
-            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.EMERALD_ORE)
-                    .explosionResistance(100)));
+            () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.ANCIENT_DEBRIS)
+                    .explosionResistance(1200)));
 
+    /* Plants */
+    public static final RegistryObject<Block> LAVA_CANE = BLOCKS.register("lava_cane",
+            () -> new LavaCaneBlock(BlockBehaviour.Properties.copy(Blocks.SUGAR_CANE)));
+
+
+    /* Waxed blocks*/
     public static final Map<Block, RegistryObject<Block>> WAXED_BLOCKS = new HashMap<>(){{
         put(Blocks.WHITE_WOOL, waxedWool(Blocks.WHITE_WOOL));
         put(Blocks.RED_WOOL, waxedWool(Blocks.RED_WOOL));
@@ -118,11 +127,27 @@ public class ModBlocks {
         put(Blocks.CHERRY_STAIRS, waxedStair(Blocks.CHERRY_STAIRS));
         put(Blocks.DARK_OAK_STAIRS, waxedStair(Blocks.DARK_OAK_STAIRS));
         put(Blocks.MANGROVE_STAIRS, waxedStair(Blocks.MANGROVE_STAIRS));
+        put(Blocks.ACACIA_LEAVES, waxedLeaves(Blocks.ACACIA_LEAVES));
+        put(Blocks.AZALEA_LEAVES, waxedLeaves(Blocks.AZALEA_LEAVES));
+        put(Blocks.BIRCH_LEAVES, waxedLeaves(Blocks.BIRCH_LEAVES));
+        put(Blocks.CHERRY_LEAVES, waxedLeaves(Blocks.CHERRY_LEAVES));
+        put(Blocks.DARK_OAK_LEAVES, waxedLeaves(Blocks.DARK_OAK_LEAVES));
+        put(Blocks.FLOWERING_AZALEA_LEAVES, waxedLeaves(Blocks.FLOWERING_AZALEA_LEAVES));
+        put(Blocks.JUNGLE_LEAVES, waxedLeaves(Blocks.JUNGLE_LEAVES));
+        put(Blocks.MANGROVE_LEAVES, waxedLeaves(Blocks.MANGROVE_LEAVES));
+        put(Blocks.OAK_LEAVES, waxedLeaves(Blocks.OAK_LEAVES));
+        put(Blocks.SPRUCE_LEAVES, waxedLeaves(Blocks.SPRUCE_LEAVES));
+        put(Blocks.BOOKSHELF, waxedBlock(Blocks.BOOKSHELF, 1.5f, 0f, SoundType.WOOD));
     }};
 
     private static RegistryObject<Block> waxedWood(Block block) {
         ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
         return newBlock("waxed_" + key.getPath(), () -> new WaxedRotatableBlock(block));
+    }
+
+    private static RegistryObject<Block> waxedLeaves(Block block) {
+        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
+        return newBlock("waxed_" + key.getPath(), () -> new WaxedLeavesBlock(block));
     }
 
     private static RegistryObject<Block> waxedStair(Block block) {

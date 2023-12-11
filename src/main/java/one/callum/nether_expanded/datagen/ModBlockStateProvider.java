@@ -1,6 +1,8 @@
 package one.callum.nether_expanded.datagen;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -23,6 +25,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.NETHER_COPPER_ORE);
         blockWithItem(ModBlocks.NETHER_IRON_ORE);
+        blockWithItem(ModBlocks.NETHER_ANCIENT_CACHE);
+        cropBlock(ModBlocks.LAVA_CANE);
 
         ModBlocks.WAXED_BLOCKS.forEach((key, value) -> {
             String name = key.getName().toString();
@@ -34,7 +38,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 stairBlockFromVanilla(value, key);
             } else if (name.contains("carpet")) {
                 carpetBlockFromVanilla(value, key);
-            } else {
+            } else if (name.contains("leaves")) {
+                leavesWithItemVanilla(value, key);
+            }  else if (name.contains("wool") || name.contains("planks")) {
                 blockWithItemVanilla(value, key);
             }
         });
@@ -42,6 +48,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItem(RegistryObject<Block> block) {
         simpleBlockWithItem(block.get(), cubeAll(block.get()));
+    }
+
+    private void cropBlock(RegistryObject<Block> block) {
+        simpleBlock(block.get(), models().withExistingParent(block.getId().getPath(),
+                new ResourceLocation("block/tinted_cross")).texture("cross",
+                new ResourceLocation(NetherExpanded.MODID, "block/" + block.getId().getPath()))
+                .renderType("cutout"));
     }
 
     private void carpetBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
@@ -55,6 +68,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItemVanilla(RegistryObject<Block> block, Block vanillaBlock) {
         simpleBlockWithItem(block.get(), cubeAll(vanillaBlock));
+    }
+
+    private void leavesWithItemVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        simpleBlockWithItem(block.get(), models().singleTexture(rl.getPath(),
+                new ResourceLocation("block/leaves"),
+                "all", new ResourceLocation(rl.getNamespace(), "block/" + rl.getPath()) ));
     }
 
     private void stairBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
