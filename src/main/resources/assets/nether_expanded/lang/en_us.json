@@ -1,7 +1,13 @@
 {
+  "entity.nether_expanded.nether_cow": "Nether Cow",
+
   "item.nether_expanded.copper_gold_alloy": "Copper Gold Alloy",
   "item.nether_expanded.lava_wax": "Lava Wax",
   "item.nether_expanded.copper_nugget": "Copper Nugget",
+  "item.nether_expanded.lava_cane": "Lava Cane",
+  "item.nether_expanded.nether_cow_egg": "Nether Cow Spawn Egg",
+
+  "block.nether_expanded.nether_ancient_cache": "Ancient Cache",
 
   "upgrade.nether_expanded.gold_plated_upgrade": "Gold Plated Upgrade",
   "item.nether_expanded.smithing_template.gold_plated_upgrade.applies_to": "Netherite Armor",
@@ -22,8 +28,6 @@
   "item.nether_expanded.gold_plated_chestplate": "Gold Plated Netherite Chestplate",
   "item.nether_expanded.gold_plated_leggings": "Gold Plated Netherite Leggings",
   "item.nether_expanded.gold_plated_boots": "Gold Plated Netherite Boots",
-
-  "block.nether_expanded.nether_ancient_cache": "Ancient Cache",
 
   "block.nether_expanded.waxed_oak_log": "Waxed Oak Log",
   "block.nether_expanded.waxed_spruce_log": "Waxed Spruce Log",
@@ -118,5 +122,50 @@
   "block.nether_expanded.waxed_orange_wool": "Waxed Orange Wool",
   "block.nether_expanded.waxed_pink_wool": "Waxed Pink Wool",
   "block.nether_expanded.waxed_magenta_wool": "Waxed Magenta Wool",
-  "block.nether_expanded.waxed_purple_wool": "Waxed Purple Wool"
+  "block.nether_expanded.waxed_purple_wool": "Waxed Purple Wool",
+
+  "block.nether_expanded.waxed_oak_trapdoor": "Waxed Oak Trapdoor",
+  "block.nether_expanded.waxed_birch_trapdoor": "Waxed Birch Trapdoor",
+  "block.nether_expanded.waxed_spruce_trapdoor": "Waxed Spruce Trapdoor",
+  "block.nether_expanded.waxed_jungle_trapdoor": "Waxed Jungle Trapdoor",
+  "block.nether_expanded.waxed_mangrove_trapdoor": "Waxed Mangrove Trapdoor",
+  "block.nether_expanded.waxed_dark_oak_trapdoor": "Waxed Dark Oak Trapdoor",
+  "block.nether_expanded.waxed_cherry_trapdoor": "Waxed Cherry Trapdoor",
+  "block.nether_expanded.waxed_acacia_trapdoor": "Waxed Acacia Trapdoor",
+
+  "block.nether_expanded.waxed_oak_door": "Waxed Oak Door",
+  "block.nether_expanded.waxed_birch_door": "Waxed Birch Door",
+  "block.nether_expanded.waxed_spruce_door": "Waxed Spruce Door",
+  "block.nether_expanded.waxed_jungle_door": "Waxed Jungle Door",
+  "block.nether_expanded.waxed_mangrove_door": "Waxed Mangrove Door",
+  "block.nether_expanded.waxed_dark_oak_door": "Waxed Dark Oak Door",
+  "block.nether_expanded.waxed_cherry_door": "Waxed Cherry Door",
+  "block.nether_expanded.waxed_acacia_door": "Waxed Acacia Door",
+
+  "block.nether_expanded.waxed_oak_fence_gate": "Waxed Oak Fence Gate",
+  "block.nether_expanded.waxed_birch_fence_gate": "Waxed Birch Fence Gate",
+  "block.nether_expanded.waxed_spruce_fence_gate": "Waxed Spruce Fence Gate",
+  "block.nether_expanded.waxed_jungle_fence_gate": "Waxed Jungle Fence Gate",
+  "block.nether_expanded.waxed_mangrove_fence_gate": "Waxed Mangrove Fence Gate",
+  "block.nether_expanded.waxed_dark_oak_fence_gate": "Waxed Dark Oak Fence Gate",
+  "block.nether_expanded.waxed_cherry_fence_gate": "Waxed Cherry Fence Gate",
+  "block.nether_expanded.waxed_acacia_fence_gate": "Waxed Acacia Fence Gate",
+
+  "block.nether_expanded.waxed_oak_fence": "Waxed Oak Fence",
+  "block.nether_expanded.waxed_birch_fence": "Waxed Birch Fence",
+  "block.nether_expanded.waxed_spruce_fence": "Waxed Spruce Fence",
+  "block.nether_expanded.waxed_jungle_fence": "Waxed Jungle Fence",
+  "block.nether_expanded.waxed_mangrove_fence": "Waxed Mangrove Fence",
+  "block.nether_expanded.waxed_dark_oak_fence": "Waxed Dark Oak Fence",
+  "block.nether_expanded.waxed_cherry_fence": "Waxed Cherry Fence",
+  "block.nether_expanded.waxed_acacia_fence": "Waxed Acacia Fence",
+
+  "block.nether_expanded.waxed_oak_slab": "Waxed Oak Slab",
+  "block.nether_expanded.waxed_birch_slab": "Waxed Birch Slab",
+  "block.nether_expanded.waxed_spruce_slab": "Waxed Spruce Slab",
+  "block.nether_expanded.waxed_jungle_slab": "Waxed Jungle Slab",
+  "block.nether_expanded.waxed_mangrove_slab": "Waxed Mangrove Slab",
+  "block.nether_expanded.waxed_dark_oak_slab": "Waxed Dark Oak Slab",
+  "block.nether_expanded.waxed_cherry_slab": "Waxed Cherry Slab",
+  "block.nether_expanded.waxed_acacia_slab": "Waxed Acacia Slab"
 }

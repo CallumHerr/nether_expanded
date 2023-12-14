@@ -1,6 +1,9 @@
 package one.callum.nether_expanded.entity.custom;
 
+import com.mojang.logging.LogUtils;
 import net.minecraft.Util;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.CowModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -11,6 +14,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
@@ -40,6 +44,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.BiomeSources;
 import net.minecraft.world.level.biome.Biomes;
@@ -51,6 +56,7 @@ import net.minecraftforge.common.Tags;
 import one.callum.nether_expanded.entity.ModEntities;
 import one.callum.nether_expanded.entity.variant.NetherCowVariant;
 import one.callum.nether_expanded.item.ModItems;
+import one.callum.nether_expanded.util.ModTags;
 import org.jetbrains.annotations.Nullable;
 
 public class NetherCow extends Animal {
@@ -77,6 +83,12 @@ public class NetherCow extends Animal {
 
     public static boolean checkSpawnRules(EntityType<NetherCow> pAnimal, LevelAccessor pLevel, MobSpawnType pSpawnType, BlockPos pPos, RandomSource pRandom) {
         return true;
+    }
+
+
+    @Override
+    public float getWalkTargetValue(BlockPos pPos, LevelReader pLevel) {
+        return 10f;
     }
 
     @Override

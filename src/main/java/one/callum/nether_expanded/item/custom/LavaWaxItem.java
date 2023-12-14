@@ -6,6 +6,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
@@ -21,6 +22,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.block.ModBlocks;
+import one.callum.nether_expanded.block.custom.waxed.WaxedDoorBlock;
 import one.callum.nether_expanded.item.ModItems;
 
 public class LavaWaxItem extends Item {
@@ -38,8 +40,11 @@ public class LavaWaxItem extends Item {
         if (waxedBlock == null) return InteractionResult.FAIL;
 
         if (!level.isClientSide) {
-            level.setBlock(pos, waxedBlock.get().withPropertiesOf(state), 7);
+            if (state.is(BlockTags.DOORS)) {
+                WaxedDoorBlock.setBlock(level, pos, waxedBlock.get().withPropertiesOf(state));
+            } else level.setBlock(pos, waxedBlock.get().withPropertiesOf(state), 7);
         }
+
         ParticleUtils.spawnParticlesOnBlockFace(pContext.getLevel(), pContext.getClickedPos(),
                 ParticleTypes.WAX_OFF,
                 UniformInt.of(3, 5), pContext.getClickedFace(),

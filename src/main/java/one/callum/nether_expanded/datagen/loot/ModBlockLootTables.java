@@ -45,10 +45,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
            put(Blocks.ACACIA_LEAVES, Blocks.ACACIA_SAPLING);
            put(Blocks.SPRUCE_LEAVES, Blocks.SPRUCE_SAPLING);
            put(Blocks.OAK_LEAVES, Blocks.OAK_SAPLING);
-           put(Blocks.BIRCH_LEAVES, Blocks.BIRCH_LEAVES);
+           put(Blocks.BIRCH_LEAVES, Blocks.BIRCH_SAPLING);
            put(Blocks.MANGROVE_LEAVES, Blocks.MANGROVE_PROPAGULE);
-           put(Blocks.JUNGLE_LEAVES, Blocks.JUNGLE_LEAVES);
-           put(Blocks.CHERRY_LEAVES, Blocks.CHERRY_LEAVES);
+           put(Blocks.JUNGLE_LEAVES, Blocks.JUNGLE_SAPLING);
+           put(Blocks.CHERRY_LEAVES, Blocks.CHERRY_SAPLING);
            put(Blocks.FLOWERING_AZALEA_LEAVES, Blocks.FLOWERING_AZALEA);
            put(Blocks.DARK_OAK_LEAVES, Blocks.DARK_OAK_SAPLING);
            put(Blocks.AZALEA_LEAVES, Blocks.AZALEA);
@@ -58,6 +58,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
             if (entry.getKey().getName().toString().contains("leaves")) {
                 this.dropWhenSilkTouch(entry.getValue().get());
                 this.createLeavesDrops(entry.getValue().get(), saplingMap.get(entry.getKey()), NORMAL_LEAVES_SAPLING_CHANCES);
+            } else if (entry.getKey().getName().toString().contains("_door")) {
+                this.add(entry.getValue().get(), this::createDoorTable);
             } else this.dropSelf(entry.getValue().get());
         });
 

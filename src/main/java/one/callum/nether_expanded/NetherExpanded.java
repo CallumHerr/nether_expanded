@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.PhantomRenderer;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -34,6 +35,7 @@ import one.callum.nether_expanded.block.ModBlocks;
 import one.callum.nether_expanded.entity.ModEntities;
 import one.callum.nether_expanded.entity.client.renderer.NetherCowRenderer;
 import one.callum.nether_expanded.entity.custom.NetherCow;
+import one.callum.nether_expanded.item.ModCreativeTabs;
 import one.callum.nether_expanded.item.ModItems;
 import one.callum.nether_expanded.loot.ModLootModifiers;
 import one.callum.nether_expanded.worldgen.ModFeatures;
@@ -43,7 +45,6 @@ import org.slf4j.Logger;
 @Mod(NetherExpanded.MODID)
 public class NetherExpanded {
     public static final String MODID = "nether_expanded";
-    private static final Logger LOGGER = LogUtils.getLogger();
 
     public NetherExpanded() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -53,12 +54,12 @@ public class NetherExpanded {
         ModEntities.register(modEventBus);
         ModLootModifiers.register(modEventBus);
         ModFeatures.register(modEventBus);
+        ModCreativeTabs.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::addCreative);
 
         MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -86,11 +87,12 @@ public class NetherExpanded {
         } else if (event.getTabKey().equals(CreativeModeTabs.INGREDIENTS)) {
             event.accept(ModItems.COPPER_GOLD_ALLOY_ITEM);
             event.accept(ModItems.COPPER_NUGGET);
+            event.accept(ModItems.GOLD_PLATING_SMITHING_TEMPLATE);
+        } else if (event.getTabKey().equals(CreativeModeTabs.NATURAL_BLOCKS)) {
+            event.accept(ModItems.LAVA_CANE);
+        } else if (event.getTabKey().equals(CreativeModeTabs.SPAWN_EGGS)) {
+            event.accept(ModItems.NETHER_COW_SPAWN_EGG);
         }
-    }
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

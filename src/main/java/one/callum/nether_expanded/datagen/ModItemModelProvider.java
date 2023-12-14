@@ -14,6 +14,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimMaterials;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -21,6 +23,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.NetherExpanded;
+import one.callum.nether_expanded.block.ModBlocks;
 import one.callum.nether_expanded.entity.client.model.NetherCowModel;
 import one.callum.nether_expanded.item.ModItems;
 
@@ -53,6 +56,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.GOLD_PLATING_SMITHING_TEMPLATE);
         simpleItem(ModItems.LAVA_CANE);
 
+        withExistingParent(ModItems.NETHER_COW_SPAWN_EGG.getId().getPath(),
+                mcLoc("item/template_spawn_egg"));
+
         trimmedArmorItem(ModItems.GOLD_ALLOY_HELMET, Items.GOLDEN_HELMET);
         trimmedArmorItem(ModItems.GOLD_ALLOY_CHESTPLATE, Items.GOLDEN_CHESTPLATE);
         trimmedArmorItem(ModItems.GOLD_ALLOY_LEGGINGS, Items.GOLDEN_LEGGINGS);
@@ -69,21 +75,55 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicTool(ModItems.GOLD_ALLOY_SHOVEL);
         basicTool(ModItems.GOLD_ALLOY_HOE);
         basicTool(ModItems.LAVA_WAX);
+
+        ModBlocks.WAXED_BLOCKS.forEach((key, value) -> {
+            String name = value.getKey().toString();
+            if (name.contains("trapdoor")) {
+                trapdoorItem(value, key);
+            } else if (name.contains("gate") || name.contains("slab")) {
+                blockItemFromVanilla(value, key);
+            } else if (name.contains("fence")) {
+                fenceItem(value, key);
+            } else if (name.contains("door")) {
+                doorFromVanilla(value, key);
+            }
+        });
     }
 
 
     /* Helper methods */
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(NetherExpanded.MODID,"item/" + item.getId().getPath()));
+    private void fenceItem(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        withExistingParent(block.getId().getPath(),
+                new ResourceLocation(rl.getNamespace(),
+                        "block/" + rl.getPath() + "_inventory"));
     }
 
-    private void simpleItemFromVanilla(RegistryObject<Item> item, Item vanillaItem) {
-        ResourceLocation itemLocal = ForgeRegistries.ITEMS.getKey(vanillaItem);
+    private void blockItemFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        withExistingParent(block.getId().getPath(),
+                new ResourceLocation(rl.getNamespace(),
+                        "block/" + rl.getPath()));
+    }
+
+    private void trapdoorItem(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        withExistingParent(block.getId().getPath(),
+                new ResourceLocation(rl.getNamespace(),
+                        "block/" + rl.getPath() + "_bottom"));
+    }
+
+    private void doorFromVanilla(RegistryObject<Block> block, Block vanilla) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanilla);
+        withExistingParent(block.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(rl.getNamespace(), "item/" + rl.getPath()));
+    }
+
+    private void simpleItem(RegistryObject<Item> item) {
         withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(itemLocal.getNamespace(), "item/" + itemLocal.getPath()));
+                new ResourceLocation(NetherExpanded.MODID,"item/" + item.getId().getPath()));
     }
 
     //Basic tool data gen

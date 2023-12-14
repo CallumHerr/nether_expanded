@@ -66,7 +66,21 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             } else if (key.contains("leaves")) {
                 this.tag(BlockTags.LEAVES).add(value.get());
                 this.tag(BlockTags.MINEABLE_WITH_HOE).add(value.get());
-            };
+            } else if (key.contains("trapdoor")) {
+                this.tag(BlockTags.TRAPDOORS).add(value.get());
+                this.tag(BlockTags.WOODEN_TRAPDOORS).add(value.get());
+            } else if (key.contains("gate")) {
+                this.tag(BlockTags.FENCE_GATES).add(value.get());
+            } else if (key.contains("fence")) {
+                this.tag(BlockTags.FENCES).add(value.get());
+                this.tag(BlockTags.WOODEN_FENCES).add(value.get());
+            } else if (key.contains("door")) {
+                this.tag(BlockTags.DOORS).add(value.get());
+                this.tag(BlockTags.WOODEN_DOORS).add(value.get());
+            } else if (key.contains("slab")) {
+                this.tag(BlockTags.SLABS).add(value.get());
+                this.tag(BlockTags.WOODEN_SLABS).add(value.get());
+            }
         });
     }
 }

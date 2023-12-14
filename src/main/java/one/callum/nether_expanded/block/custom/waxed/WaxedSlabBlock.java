@@ -1,13 +1,11 @@
-package one.callum.nether_expanded.block.custom;
+package one.callum.nether_expanded.block.custom.waxed;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.Mth;
 import net.minecraft.util.ParticleUtils;
-import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,29 +14,24 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.registries.RegistryObject;
 
-import java.util.List;
-
-public class WaxedStairBlock extends StairBlock {
+public class WaxedSlabBlock extends SlabBlock {
     private final Block regularBlock;
-
-    public WaxedStairBlock(Block block) {
-        super(block.defaultBlockState(),
-                BlockBehaviour.Properties.of()
-                        .instrument(NoteBlockInstrument.BASS)
-                        .strength(2.0F)
-                        .sound(block == Blocks.CHERRY_STAIRS
-                                ? SoundType.CHERRY_WOOD : SoundType.WOOD)
-                        .mapColor(block.defaultMapColor()));
+    public WaxedSlabBlock(Block block) {
+        super(BlockBehaviour.Properties.of()
+                .mapColor(MapColor.WOOD)
+                .instrument(NoteBlockInstrument.BASS)
+                .strength(2.0F, 3.0F)
+                .sound(block == Blocks.CHERRY_SLAB ? SoundType.CHERRY_WOOD : SoundType.WOOD));
         this.regularBlock = block;
     }
 
@@ -50,21 +43,18 @@ public class WaxedStairBlock extends StairBlock {
                 pLevel.setBlock(pPos, this.regularBlock.withPropertiesOf(pState), 7);
                 itemStack.hurtAndBreak(1, pPlayer, (e) -> e.broadcastBreakEvent(pHand));
 
-                pLevel.levelEvent(pPlayer, 3004, pPos, 0);
+                pLevel.gameEvent(pPlayer, GameEvent.BLOCK_CHANGE, pPos);
                 pPlayer.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
             }
             ParticleUtils.spawnParticlesOnBlockFace(pLevel, pPos, ParticleTypes.WAX_OFF,
                     UniformInt.of(3, 5), pHit.getDirection(),
-                    () -> getRandomSpeedRanges(pLevel.random), 0.55D);
+                    () -> WaxedBlock.getRandomSpeedRanges(pLevel.random), 0.55D);
+
 
             pLevel.playSound(pPlayer, pPos, SoundEvents.AXE_STRIP, SoundSource.BLOCKS, 1.0F, 1.0F);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);
         } else {
             return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
         }
-    }
-
-    private static Vec3 getRandomSpeedRanges(RandomSource pRandom) {
-        return new Vec3(Mth.nextDouble(pRandom, -0.5D, 0.5D), Mth.nextDouble(pRandom, -0.5D, 0.5D), Mth.nextDouble(pRandom, -0.5D, 0.5D));
     }
 }

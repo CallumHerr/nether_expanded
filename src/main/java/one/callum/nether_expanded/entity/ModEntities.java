@@ -14,7 +14,7 @@ public class ModEntities {
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, NetherExpanded.MODID);
 
     public static final RegistryObject<EntityType<NetherCow>> NETHER_COW =
-            ENTITY_TYPES.register("nether_cow", () -> EntityType.Builder.of(NetherCow::new, MobCategory.MONSTER)
+            ENTITY_TYPES.register("nether_cow", () -> EntityType.Builder.of(NetherCow::new, MobCategory.CREATURE)
                     .sized(0.9f, 1.4f).build("nether_cow"));
 
     public static void register(IEventBus eventBus) {

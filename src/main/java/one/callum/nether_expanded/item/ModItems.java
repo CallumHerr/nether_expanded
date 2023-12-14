@@ -7,12 +7,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.NetherExpanded;
 import one.callum.nether_expanded.block.ModBlocks;
+import one.callum.nether_expanded.entity.ModEntities;
 import one.callum.nether_expanded.item.custom.GoldAlloyArmorItem;
 import one.callum.nether_expanded.item.custom.LavaWaxItem;
 
@@ -53,6 +55,11 @@ public class ModItems {
     public static final RegistryObject<Item> LAVA_WAX = ITEMS.register("lava_wax",
             () -> new LavaWaxItem(new Item.Properties()));
 
+    public static final RegistryObject<Item> NETHER_COW_SPAWN_EGG = ITEMS.register("nether_cow_egg",
+            () -> new ForgeSpawnEggItem(
+                    ModEntities.NETHER_COW, 0x620802, 0xD25E16, new Item.Properties()
+            ));
+
     public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget",
             () -> new Item(new Item.Properties()));
 
@@ -89,22 +96,22 @@ public class ModItems {
 
     public static final RegistryObject<Item> GOLD_ALLOY_SWORD = ITEMS.register("gold_alloy_sword",
             () -> new SwordItem(
-                    ModToolTiers.GOLD_ALLOY, 1, 1, new Item.Properties()
+                    ModToolTiers.GOLD_ALLOY, 3, -2.4f, new Item.Properties()
             ));
 
     public static final RegistryObject<Item> GOLD_ALLOY_AXE = ITEMS.register("gold_alloy_axe",
             () -> new AxeItem(
-                    ModToolTiers.GOLD_ALLOY, 1, 1, new Item.Properties()
+                    ModToolTiers.GOLD_ALLOY, 6, 3.1f, new Item.Properties()
             ));
 
     public static final RegistryObject<Item> GOLD_ALLOY_SHOVEL = ITEMS.register("gold_alloy_shovel",
             () -> new ShovelItem(
-                    ModToolTiers.GOLD_ALLOY, 1, 1, new Item.Properties()
+                    ModToolTiers.GOLD_ALLOY, 1.5f, -3.0f, new Item.Properties()
             ));
 
     public static final RegistryObject<Item> GOLD_ALLOY_HOE = ITEMS.register("gold_alloy_hoe",
             () -> new HoeItem(
-                    ModToolTiers.GOLD_ALLOY, 1, 1, new Item.Properties()
+                    ModToolTiers.GOLD_ALLOY, -2, 1.0f, new Item.Properties()
             ));
 
     public static void register(IEventBus eventBus) {

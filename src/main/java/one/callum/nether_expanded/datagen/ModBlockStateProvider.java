@@ -4,10 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -42,8 +39,48 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 leavesWithItemVanilla(value, key);
             }  else if (name.contains("wool") || name.contains("planks")) {
                 blockWithItemVanilla(value, key);
+            } else if (name.contains("trapdoor")) {
+                trapDoorBlockFromVanilla(value, key);
+            } else if (name.contains("gate")) {
+                fenceGateFromVanilla(value, key);
+            } else if (name.contains("fence")) {
+                fenceBlockFromVanilla(value, key);
+            } else if (name.contains("door")) {
+                doorBlockFromVanilla(value, key);
+            } else if (name.contains("slab")) {
+                slabFromVanilla(value, key);
             }
         });
+    }
+
+    private void trapDoorBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        trapdoorBlockWithRenderType((TrapDoorBlock) block.get(),
+                rl.toString(),
+                new ResourceLocation(rl.getNamespace(), "block/" + rl.getPath()),
+                true, "cutout");
+    }
+
+    private void slabFromVanilla(RegistryObject<Block> block, Block vanilla) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanilla);
+        ResourceLocation slabLoc = new ResourceLocation(
+                rl.getNamespace(), "block/" + rl.getPath().replace("slab", "planks"));
+
+        slabBlock((SlabBlock) block.get(), slabLoc, slabLoc);
+    }
+
+    private void fenceGateFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        fenceGateBlock((FenceGateBlock) block.get(),
+                rl.toString(),
+                new ResourceLocation(rl.getNamespace(), "block/" + rl.getPath().replace("fence_gate", "planks")));
+    }
+
+    private void fenceBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        fenceBlock((FenceBlock) block.get(),
+                rl.toString().replace("_fence", ""),
+                new ResourceLocation(rl.getNamespace(), "block/" + rl.getPath().replace("fence", "planks")));
     }
 
     private void blockWithItem(RegistryObject<Block> block) {
@@ -64,6 +101,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new ResourceLocation(rl.getNamespace(),
                         "block/" + rl.getPath().replace("carpet", "wool"))
         ));
+    }
+
+    private void doorBlockFromVanilla(RegistryObject<Block> block, Block vanillaBlock) {
+        ResourceLocation rl = ForgeRegistries.BLOCKS.getKey(vanillaBlock);
+        String path = "block/" + rl.getPath();
+        doorBlockWithRenderType((DoorBlock) block.get(),
+                new ResourceLocation(rl.getNamespace(), path + "_bottom"),
+                new ResourceLocation(rl.getNamespace(), path + "_top"), "cutout");
     }
 
     private void blockWithItemVanilla(RegistryObject<Block> block, Block vanillaBlock) {

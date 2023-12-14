@@ -1,27 +1,22 @@
 package one.callum.nether_expanded.block;
 
-import net.minecraft.client.animation.definitions.FrogAnimation;
-import net.minecraft.client.model.PhantomModel;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.animal.Cow;
-import net.minecraft.world.entity.animal.Sheep;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import one.callum.nether_expanded.NetherExpanded;
 import one.callum.nether_expanded.block.custom.*;
+import one.callum.nether_expanded.block.custom.waxed.*;
 import one.callum.nether_expanded.item.ModItems;
 
-import java.lang.ref.PhantomReference;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -43,7 +38,6 @@ public class ModBlocks {
     /* Plants */
     public static final RegistryObject<Block> LAVA_CANE = BLOCKS.register("lava_cane",
             () -> new LavaCaneBlock(BlockBehaviour.Properties.copy(Blocks.SUGAR_CANE)));
-
 
     /* Waxed blocks*/
     public static final Map<Block, RegistryObject<Block>> WAXED_BLOCKS = new HashMap<>(){{
@@ -137,22 +131,86 @@ public class ModBlocks {
         put(Blocks.MANGROVE_LEAVES, waxedLeaves(Blocks.MANGROVE_LEAVES));
         put(Blocks.OAK_LEAVES, waxedLeaves(Blocks.OAK_LEAVES));
         put(Blocks.SPRUCE_LEAVES, waxedLeaves(Blocks.SPRUCE_LEAVES));
-        put(Blocks.BOOKSHELF, waxedBlock(Blocks.BOOKSHELF, 1.5f, 0f, SoundType.WOOD));
+        put(Blocks.OAK_FENCE, waxedFence(Blocks.OAK_FENCE));
+        put(Blocks.BIRCH_FENCE, waxedFence(Blocks.BIRCH_FENCE));
+        put(Blocks.SPRUCE_FENCE, waxedFence(Blocks.SPRUCE_FENCE));
+        put(Blocks.JUNGLE_FENCE, waxedFence(Blocks.JUNGLE_FENCE));
+        put(Blocks.ACACIA_FENCE, waxedFence(Blocks.ACACIA_FENCE));
+        put(Blocks.DARK_OAK_FENCE, waxedFence(Blocks.DARK_OAK_FENCE));
+        put(Blocks.MANGROVE_FENCE, waxedFence(Blocks.MANGROVE_FENCE));
+        put(Blocks.CHERRY_FENCE, waxedFence(Blocks.CHERRY_FENCE));
+        put(Blocks.OAK_TRAPDOOR, waxedTrapDoor(Blocks.OAK_TRAPDOOR, BlockSetType.OAK));
+        put(Blocks.SPRUCE_TRAPDOOR, waxedTrapDoor(Blocks.SPRUCE_TRAPDOOR, BlockSetType.SPRUCE));
+        put(Blocks.BIRCH_TRAPDOOR, waxedTrapDoor(Blocks.BIRCH_TRAPDOOR, BlockSetType.BIRCH));
+        put(Blocks.ACACIA_TRAPDOOR, waxedTrapDoor(Blocks.ACACIA_TRAPDOOR, BlockSetType.ACACIA));
+        put(Blocks.JUNGLE_TRAPDOOR, waxedTrapDoor(Blocks.JUNGLE_TRAPDOOR, BlockSetType.JUNGLE));
+        put(Blocks.DARK_OAK_TRAPDOOR, waxedTrapDoor(Blocks.DARK_OAK_TRAPDOOR, BlockSetType.DARK_OAK));
+        put(Blocks.CHERRY_TRAPDOOR, waxedTrapDoor(Blocks.CHERRY_TRAPDOOR, BlockSetType.CHERRY));
+        put(Blocks.MANGROVE_TRAPDOOR, waxedTrapDoor(Blocks.MANGROVE_TRAPDOOR, BlockSetType.MANGROVE));
+        put(Blocks.OAK_FENCE_GATE, waxedGate(Blocks.OAK_FENCE_GATE, WoodType.OAK));
+        put(Blocks.SPRUCE_FENCE_GATE, waxedGate(Blocks.SPRUCE_FENCE_GATE, WoodType.SPRUCE));
+        put(Blocks.BIRCH_FENCE_GATE, waxedGate(Blocks.BIRCH_FENCE_GATE, WoodType.BIRCH));
+        put(Blocks.JUNGLE_FENCE_GATE, waxedGate(Blocks.JUNGLE_FENCE_GATE, WoodType.JUNGLE));
+        put(Blocks.ACACIA_FENCE_GATE, waxedGate(Blocks.ACACIA_FENCE_GATE, WoodType.ACACIA));
+        put(Blocks.DARK_OAK_FENCE_GATE, waxedGate(Blocks.DARK_OAK_FENCE_GATE, WoodType.DARK_OAK));
+        put(Blocks.MANGROVE_FENCE_GATE, waxedGate(Blocks.MANGROVE_FENCE_GATE, WoodType.MANGROVE));
+        put(Blocks.CHERRY_FENCE_GATE, waxedGate(Blocks.CHERRY_FENCE_GATE, WoodType.CHERRY));
+        put(Blocks.OAK_DOOR, waxedDoor(Blocks.OAK_DOOR, BlockSetType.OAK));
+        put(Blocks.BIRCH_DOOR, waxedDoor(Blocks.BIRCH_DOOR, BlockSetType.BIRCH));
+        put(Blocks.SPRUCE_DOOR, waxedDoor(Blocks.SPRUCE_DOOR, BlockSetType.SPRUCE));
+        put(Blocks.JUNGLE_DOOR, waxedDoor(Blocks.JUNGLE_DOOR, BlockSetType.JUNGLE));
+        put(Blocks.ACACIA_DOOR, waxedDoor(Blocks.ACACIA_DOOR, BlockSetType.ACACIA));
+        put(Blocks.CHERRY_DOOR, waxedDoor(Blocks.CHERRY_DOOR, BlockSetType.CHERRY));
+        put(Blocks.DARK_OAK_DOOR, waxedDoor(Blocks.DARK_OAK_DOOR, BlockSetType.DARK_OAK));
+        put(Blocks.MANGROVE_DOOR, waxedDoor(Blocks.MANGROVE_DOOR, BlockSetType.MANGROVE));
+        put(Blocks.OAK_SLAB, waxedSlab(Blocks.OAK_SLAB));
+        put(Blocks.BIRCH_SLAB, waxedSlab(Blocks.BIRCH_SLAB));
+        put(Blocks.SPRUCE_SLAB, waxedSlab(Blocks.SPRUCE_SLAB));
+        put(Blocks.ACACIA_SLAB, waxedSlab(Blocks.ACACIA_SLAB));
+        put(Blocks.JUNGLE_SLAB, waxedSlab(Blocks.JUNGLE_SLAB));
+        put(Blocks.DARK_OAK_SLAB, waxedSlab(Blocks.DARK_OAK_SLAB));
+        put(Blocks.CHERRY_SLAB, waxedSlab(Blocks.CHERRY_SLAB));
+        put(Blocks.MANGROVE_SLAB, waxedSlab(Blocks.MANGROVE_SLAB));
     }};
 
     private static RegistryObject<Block> waxedWood(Block block) {
-        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
-        return newBlock("waxed_" + key.getPath(), () -> new WaxedRotatableBlock(block));
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedRotatableBlock(block));
+    }
+
+    private static RegistryObject<Block> waxedSlab(Block block) {
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedSlabBlock(block));
+    }
+
+    private static RegistryObject<Block> waxedDoor(Block block, BlockSetType type) {
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedDoorBlock(block, type));
+    }
+
+    private static RegistryObject<Block> waxedGate(Block block, WoodType type) {
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedGateBlock(block, type));
+    }
+
+    private static RegistryObject<Block> waxedFence(Block block) {
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedFenceBlock(block));
+    }
+
+    private static RegistryObject<Block> waxedTrapDoor(Block block, BlockSetType type) {
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedTrapDoorBlock(block, type));
     }
 
     private static RegistryObject<Block> waxedLeaves(Block block) {
-        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
-        return newBlock("waxed_" + key.getPath(), () -> new WaxedLeavesBlock(block));
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedLeavesBlock(block));
     }
 
     private static RegistryObject<Block> waxedStair(Block block) {
-        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
-        return newBlock("waxed_" + key.getPath(), () -> new WaxedStairBlock(block));
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedStairBlock(block));
     }
 
     private static RegistryObject<Block> waxedPlank(Block block) {
@@ -160,8 +218,8 @@ public class ModBlocks {
     }
 
     private static RegistryObject<Block> waxedWoolCarpet(Block block, DyeColor color) {
-        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
-        return newBlock("waxed_" + key.getPath(), () -> new WaxedWoolCarpetBlock(block, color));
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedWoolCarpetBlock(block, color));
     }
 
     private static RegistryObject<Block> waxedWool(Block block) {
@@ -169,8 +227,8 @@ public class ModBlocks {
     }
 
     private static RegistryObject<Block> waxedBlock(Block block, float strength, float expResist, SoundType sound) {
-        ResourceLocation key = ForgeRegistries.BLOCKS.getKey(block);
-        return newBlock("waxed_" + key.getPath(), () -> new WaxedBlock(block, strength, expResist, sound));
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedBlock(block, strength, expResist, sound));
     }
 
     private static <T extends Block> RegistryObject<T> newBlock(String name, Supplier<T> blockInfo) {

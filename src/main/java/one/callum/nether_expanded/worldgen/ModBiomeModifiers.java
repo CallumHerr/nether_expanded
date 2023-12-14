@@ -19,6 +19,7 @@ import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 import one.callum.nether_expanded.NetherExpanded;
 import one.callum.nether_expanded.entity.ModEntities;
+import one.callum.nether_expanded.util.ModTags;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class ModBiomeModifiers {
         var biomes = context.lookup(Registries.BIOME);
 
         context.register(NETHER_COW_SPAWN, new ForgeBiomeModifiers.AddSpawnsBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_NETHER),
+                biomes.getOrThrow(ModTags.Biomes.NETHER_FORESTS),
                 List.of(new MobSpawnSettings.SpawnerData(ModEntities.NETHER_COW.get(),
                         50,
                         2,
