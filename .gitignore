@@ -2,7 +2,6 @@
 build/
 run-data/
 run/
-src/generated/resources/.cache/
 
 # Compiled class file
 *.class

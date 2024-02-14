@@ -1,11 +1,13 @@
 package one.callum.nether_expanded.datagen;
 
+import com.google.gson.JsonObject;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -24,6 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.NETHER_IRON_ORE);
         blockWithItem(ModBlocks.NETHER_ANCIENT_CACHE);
         cropBlock(ModBlocks.LAVA_CANE);
+
 
         ModBlocks.WAXED_BLOCKS.forEach((key, value) -> {
             String name = key.getName().toString();

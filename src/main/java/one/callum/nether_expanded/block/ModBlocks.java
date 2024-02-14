@@ -171,7 +171,14 @@ public class ModBlocks {
         put(Blocks.DARK_OAK_SLAB, waxedSlab(Blocks.DARK_OAK_SLAB));
         put(Blocks.CHERRY_SLAB, waxedSlab(Blocks.CHERRY_SLAB));
         put(Blocks.MANGROVE_SLAB, waxedSlab(Blocks.MANGROVE_SLAB));
+        put(Blocks.DRIED_KELP_BLOCK, waxedBlock(Blocks.DRIED_KELP_BLOCK, 0.5f, 2.5f, SoundType.GRASS));
+        put(Blocks.SCAFFOLDING, waxedScaffolding(Blocks.SCAFFOLDING));
     }};
+
+    private static RegistryObject<Block> waxedScaffolding(Block block) {
+        return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),
+                () -> new WaxedScaffoldingBlock(block));
+    }
 
     private static RegistryObject<Block> waxedWood(Block block) {
         return newBlock("waxed_" + ForgeRegistries.BLOCKS.getKey(block).getPath(),

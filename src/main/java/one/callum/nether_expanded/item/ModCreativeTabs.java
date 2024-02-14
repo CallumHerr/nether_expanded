@@ -110,6 +110,9 @@ public class ModCreativeTabs {
                                 output.accept(ModBlocks.WAXED_BLOCKS.get(Blocks.CHERRY_FENCE_GATE).get());
                                 output.accept(ModBlocks.WAXED_BLOCKS.get(Blocks.CHERRY_DOOR).get());
                                 output.accept(ModBlocks.WAXED_BLOCKS.get(Blocks.CHERRY_TRAPDOOR).get());
+
+                                output.accept(ModBlocks.WAXED_BLOCKS.get(Blocks.DRIED_KELP_BLOCK).get());
+                                output.accept(ModBlocks.WAXED_BLOCKS.get(Blocks.SCAFFOLDING).get());
                             })
                             .build());
 

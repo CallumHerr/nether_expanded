@@ -167,5 +167,8 @@
   "block.nether_expanded.waxed_mangrove_slab": "Waxed Mangrove Slab",
   "block.nether_expanded.waxed_dark_oak_slab": "Waxed Dark Oak Slab",
   "block.nether_expanded.waxed_cherry_slab": "Waxed Cherry Slab",
-  "block.nether_expanded.waxed_acacia_slab": "Waxed Acacia Slab"
+  "block.nether_expanded.waxed_acacia_slab": "Waxed Acacia Slab",
+
+  "block.nether_expanded.waxed_scaffolding": "Waxed Scaffolding",
+  "block.nether_expanded.waxed_dried_kelp_block": "Waxed Dried Kelp Block"
 }
